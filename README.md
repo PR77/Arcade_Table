@@ -7,7 +7,7 @@ This design has not been compliance tested and will not be. Mains power is feed 
 # Overview
 After seeing my designs of Raspberry Pi arcade tables or cabinets I was sold on the idea and wanted to build one myself. I found a blog of person who created one using an IKEA table and I though this was a great idea. I then built one and after many hours playing "Buggy Boy" on the C64 I realise the ergonomics of the IKEA table design was terrible!
 
-I actually found some sellers on various auction sites selling designs and cut frames for all different prices, but I wanted the challenge to make one completely myself. So set with 4sqm of 13mm MDF (I actually only ended up needed 1sqm), a bunch of tools and an idea I went to work on a table top design.
+I actually found some sellers on various auction sites selling designs and cut frames for all different prices, but I wanted the challenge to make one completely myself. So set with 4sqm of 13mm MDF (I only ended up needing 1sqm), a bunch of tools and an idea, I set to work on a table top design.
 
 Simple angels are used ensuring the LCD remains in the optimal viewing position and the controls "lean" towards the player. I researched the layout of the buttons (yes there is actually an optimal layout as each finger on our hand has a different length relative to your knuckles) to also make sure these would be comfortable.
 

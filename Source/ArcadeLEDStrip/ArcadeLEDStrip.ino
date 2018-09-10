@@ -13,8 +13,6 @@ typedef enum {
   fadeOnFadeOff,
   fadeOnFastOff,
   fastOnFadeOff,
-  fadeOnFastFlashMultipleOff,
-  fastFlashMultipleOnFadeOff,
   determineNextPattern
 } ledPattern_t;
 
@@ -56,7 +54,7 @@ patternHandlerState_t flashHandler(byte flashCount, byte *outputState) {
   }
   else if (patternRunning == patternHandlerState) {
     if ((currentFlashCount < flashCount) && (false == intermediateCycle)) {
-      intermediateCycle = true; 
+      intermediateCycle = true;
       *outputState = 255;
     }
     else if ((currentFlashCount < flashCount) && (true == intermediateCycle)) {
@@ -69,7 +67,7 @@ patternHandlerState_t flashHandler(byte flashCount, byte *outputState) {
   if (currentFlashCount == flashCount) {
     patternHandlerState = patternDone;
   }
-   
+
   if (patternDone == patternHandlerState) {
     patternHandlerState = patternNotYetRunning;
     return (patternDone);
@@ -95,7 +93,7 @@ patternHandlerState_t fadeOnHandler(byte *outputState) {
   }
 
   if (patternDone == patternHandlerState) {
-    patternHandlerState = patternNotYetRunning;    
+    patternHandlerState = patternNotYetRunning;
     return (patternDone);
   }
 
@@ -111,11 +109,11 @@ patternHandlerState_t fastOnHandler(byte *outputState) {
   }
 
   if (patternDone == patternHandlerState) {
-    patternHandlerState = patternNotYetRunning;    
+    patternHandlerState = patternNotYetRunning;
     return (patternDone);
   }
 
-  return (patternHandlerState); 
+  return (patternHandlerState);
 }
 
 patternHandlerState_t fadeOffHandler(byte *outputState) {
@@ -135,7 +133,7 @@ patternHandlerState_t fadeOffHandler(byte *outputState) {
   }
 
   if (patternDone == patternHandlerState) {
-    patternHandlerState = patternNotYetRunning;  
+    patternHandlerState = patternNotYetRunning;
     return (patternDone);
   }
 
@@ -151,11 +149,11 @@ patternHandlerState_t fastOffHandler(byte *outputState) {
   }
 
   if (patternDone == patternHandlerState) {
-    patternHandlerState = patternNotYetRunning;  
+    patternHandlerState = patternNotYetRunning;
     return (patternDone);
   }
 
-  return (patternHandlerState); 
+  return (patternHandlerState);
 }
 
 void setup() {
@@ -179,7 +177,7 @@ void loop() {
           }
         }
         break;
-        
+
       case (slowFlashMultiple):
         if (slowTimer.check()) {
           if (patternDone == flashHandler(3, &ledDriveValue)) {
@@ -187,7 +185,7 @@ void loop() {
           }
         }
         break;
-        
+
       case (slowFlashRandom):
         if (slowTimer.check()) {
           if (patternDone == flashHandler(randomFlashCount, &ledDriveValue)) {
@@ -195,7 +193,7 @@ void loop() {
           }
         }
         break;
-        
+
       case (fastFlashSingle):
        if (fastTimer.check()) {
           if (patternDone == flashHandler(1, &ledDriveValue)) {
@@ -203,7 +201,7 @@ void loop() {
           }
         }
         break;
-        
+
       case (fastFlashMultiple):
         if (fastTimer.check()) {
           if (patternDone == flashHandler(9, &ledDriveValue)) {
@@ -211,7 +209,7 @@ void loop() {
           }
         }
         break;
-        
+
       case (fastFlashRandom):
         if (fastTimer.check()) {
           if (patternDone == flashHandler(randomFlashCount, &ledDriveValue)) {
@@ -219,86 +217,79 @@ void loop() {
           }
         }
         break;
-        
+
       case (fadeOnFadeOff):
         if (fadeTimer.check()) {
           switch (subLedPattern) {
             case (fadeOn):
               if (patternDone == fadeOnHandler(&ledDriveValue)) {
                 holdTimer.reset();
-                subLedPattern = holdDelay;                
+                subLedPattern = holdDelay;
               }
               break;
             case (holdDelay):
               if (holdTimer.check()) {
-                subLedPattern = fadeOff;  
+                subLedPattern = fadeOff;
               }
               break;
             case (fadeOff):
               if (patternDone == fadeOffHandler(&ledDriveValue)) {
                 ledPattern = determineNextPattern;
-                subLedPattern = fadeOn;                
+                subLedPattern = fadeOn;
               }
               break;
           }
         }
-        break;  
-             
+        break;
+
       case (fadeOnFastOff):
         if (fadeTimer.check()) {
           switch (subLedPattern) {
             case (fadeOn):
               if (patternDone == fadeOnHandler(&ledDriveValue)) {
                 holdTimer.reset();
-                subLedPattern = holdDelay;                
+                subLedPattern = holdDelay;
               }
               break;
             case (holdDelay):
               if (holdTimer.check()) {
-                subLedPattern = fadeOff;  
+                subLedPattern = fadeOff;
               }
               break;
             case (fadeOff):
               if (patternDone == fastOffHandler(&ledDriveValue)) {
                 ledPattern = determineNextPattern;
-                subLedPattern = fadeOn;                
+                subLedPattern = fadeOn;
               }
               break;
           }
         }
         break;
-              
+
       case (fastOnFadeOff):
         if (fadeTimer.check()) {
           switch (subLedPattern) {
             case (fadeOn):
               if (patternDone == fastOnHandler(&ledDriveValue)) {
                 holdTimer.reset();
-                subLedPattern = holdDelay;                
+                subLedPattern = holdDelay;
               }
               break;
             case (holdDelay):
               if (holdTimer.check()) {
-                subLedPattern = fadeOff;  
+                subLedPattern = fadeOff;
               }
               break;
             case (fadeOff):
               if (patternDone == fadeOffHandler(&ledDriveValue)) {
                 ledPattern = determineNextPattern;
-                subLedPattern = fadeOn;                
+                subLedPattern = fadeOn;
               }
               break;
           }
         }
-        break;     
-      /*
-      case (fadeOnFastFlashMultipleOff):
-        ledPattern = determineNextPattern;
         break;
-      case (fastFlashMultipleOnFadeOff):
-        ledPattern = determineNextPattern;
-        break;
-      */
+
       case (determineNextPattern):
         slowTimer.reset();
         fastTimer.reset();

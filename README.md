@@ -13,7 +13,7 @@ Simple angels are used ensuring the LCD remains in the optimal viewing position 
 
 ### Appearance
 Nice basic frame:
-![Basic Frame](/Images/BasicFrame.jpg)
+![Basic Frame](/Images/BasicFrame.JPG)
 
 ### Components
 Of course a Raspberry Pi is at the heart of this! As I am only interested in C64 and really early arcade classics (Double Dragon) I settled with a Raspberry Pi B+ which I had on hand. Overclocked to 800Mhz this was perfectly fine. Wired to the Raspberry Pi via HDMI is a 19 Inch TFT, USB dongle for a Keyboard + Mouse, USB Control Kit and a Bluetooth dongle.
